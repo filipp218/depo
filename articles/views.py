@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from django.views.generic import DetailView, ListView, CreateView
 from .models import Article, Category
 from django.views.generic.list import MultipleObjectMixin
+from django.core.mail import send_mail, BadHeaderError
+from blog_news.settings import RECIPIENTS_EMAIL, DEFAULT_FROM_EMAIL
 
 
 class Categorys:
@@ -67,3 +69,18 @@ class ArticleByCategory(View, MultipleObjectMixin):
             elif status == "new":
                 self.ordering = "-date"
         return self.ordering
+
+
+class FeedbackView(View):
+
+    def get(self, request):
+        return render(request, "articles/feedback.html",)
+
+    def post(self, request):
+        subject = 'рабочая тема'
+        message = request.POST["text"]
+        try:
+            send_mail(f'{subject}от {request.POST["email"]}', message, DEFAULT_FROM_EMAIL, RECIPIENTS_EMAIL)
+        except BadHeaderError:
+            return render(request, "articles/feedback.html", )
+        return redirect('/')

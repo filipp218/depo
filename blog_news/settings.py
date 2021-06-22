@@ -130,3 +130,7 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.getenv('MEDIA_ROOT', 'media')
 STATIC_ROOT = os.getenv('STATIC_ROOT', 'static')
+
+RECIPIENTS_EMAIL = ['example@gmail.com']   # замените на свою почту
+DEFAULT_FROM_EMAIL = 'example@gmail.com'  # замените на свою почту
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

@@ -1,0 +1,23 @@
+{% extends 'articles/base.html' %}
+{% load static %}
+
+{% block title %}
+Блог
+{% endblock %}
+
+{% block content %}
+<form action="feedback" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="col-lg-offset -3 col-lg-6">
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Укажите свою почту</label>
+          <input type="email" class="form-control" id="exampleFormControlInput1" name="email" placeholder="name@example.com">
+        </div>
+        <div class="mb-3">
+          <label for="exampleFormControlTextarea1" class="form-label">Что желаете рассказать?</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" name="text" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </div>
+</form>
+{% endblock %}
