@@ -1,0 +1,45 @@
+{% extends 'articles/base.html' %}
+{% load static %}
+
+{% block title %}
+Блог
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1> Блог</h1>
+    <p><big><big>Находите любимые статьи по словам или по категориям</big></big></p>
+</div>
+
+
+<div class="container">
+    <h1> Статьи </h1>
+</div>
+
+<div class="container">
+
+    <p>Сортировать статьи</p>
+    <form action="/category/{{pk}}" method="get">
+    <button name="ordering" value="new" class = "btn btn-success">Сначала новые</button>
+    <button name="ordering" value="old" class = "btn btn-success">Сначала старые</button>
+    </form>
+    <br>
+    <br>
+
+    <div class="row">
+        {% for article in articles%}
+            <div class="col-sm">
+                <div class="card" style="width: 18rem ;heigh: 14rem">
+                    <img class="card-img-top" src="{% get_media_prefix %}{{article.image}}" alt="{{article.title}}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{article.title}}</h5>
+                        <p class="card-text"><small class="text-muted">{{article.date}}</small></p>
+                        <a href="/article/{{article.id}}" class="btn btn-primary">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

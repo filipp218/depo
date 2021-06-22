@@ -1,0 +1,26 @@
+{% extends 'articles/base.html' %}
+{% load static %}
+{% block title %}
+  Добавить категорию
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+            <div class="features">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    Название для категории<br>
+                    <br>
+                    {{form.name}}<br>
+                    <br>
+                    <span>{{error}}</span>
+                    <button type= "submit" class = "btn btn-primary">Добавить категорию</button>
+                    <br><br>
+                </form>
+            </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}

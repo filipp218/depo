@@ -1,0 +1,39 @@
+{% extends 'articles/base.html' %}
+{% load static %}
+{% block title %}
+  Создать статью
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+      <div class="row">
+        <div class="col-sm">
+            <div class="features">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    Название объявления<br>
+                    {{form.title}}<br>
+                    Описание<br>
+                    {{form.description}}<br>
+                    Дата<br>
+                    {{form.date}}<br>
+                    Изображение<br>
+                    {{form.image}}<br>
+                    Категория<br>
+                    {{form.category}}
+                    <br>
+                    <br>
+                    <span>{{error}}</span>
+                    <br>
+                    <button type= "submit" class = "btn btn-primary">Добавить статью</button>
+                    <br><br>
+                </form>
+                <form action="/category/add">
+                    <button class = "btn btn-success" >Добавить категорию</button>
+                </form>
+            </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
